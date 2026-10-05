@@ -366,8 +366,8 @@ $$X = (x_1, \dots, x_N) \in \mathbb{R}^{N \times 13}, \quad Y = (y_1, \dots, y_M
 | **Energy + ZCR** | Đồ thị thời gian phân rõ 3 hàng cho 3 từ đại diện | **Silence:** Năng lượng $\approx 0$, ZCR dao động nhỏ do nhiễu nền.<br>**Voiced:** Năng lượng đạt đỉnh cực đại, ZCR rất thấp ($< 0.1$).<br>**Unvoiced:** Năng lượng thấp, ZCR rất cao ($> 0.3$). |
 | **Endpoint Detection** | Bảng thời lượng cắt bỏ $47\% - 51\%$ silence dư thừa | Nhờ có `margin_ms = 50ms`, các phụ âm xát đầu từ `/kh/` và âm tắc cuối từ `/t/` được bảo tồn nguyên vẹn $100\%$, không hề bị cắt phạm vào âm thanh. |
 | **MFCC** | Heatmaps $(T, 13)$ của các từ khác nhau | Bao phổ các từ thể hiện các rãnh formant khác nhau rõ rệt theo thời gian. Số frame $T$ thay đổi theo độ dài phát âm nhưng số chiều $13$ là bất biến. |
-| **DTW cùng từ** | $\text{DTW\_norm} \approx 10.52$, Path dài $51\text{ bước}$ | Đường căn chỉnh tối ưu bám sát đường chéo chính, thể hiện sự đồng dạng âm học cao giữa 2 lần phát âm cùng từ. |
-| **DTW khác từ** | $\text{DTW\_norm} \approx 55.82$, Path dài $64\text{ bước}$ | Chi phí tăng vọt gấp **$5.3$ lần**. Đường đi gãy khúc nghiêm trọng do giải thuật phải gượng ép ghép nối các âm vị khác biệt. |
+| **DTW cùng từ** | $\mathrm{DTW\_norm} \approx 10.52$, Path dài $51\text{ bước}$ | Đường căn chỉnh tối ưu bám sát đường chéo chính, thể hiện sự đồng dạng âm học cao giữa 2 lần phát âm cùng từ. |
+| **DTW khác từ** | $\mathrm{DTW\_norm} \approx 55.82$, Path dài $64\text{ bước}$ | Chi phí tăng vọt gấp **$5.3$ lần**. Đường đi gãy khúc nghiêm trọng do giải thuật phải gượng ép ghép nối các âm vị khác biệt. |
 | **Recognizer** | **Accuracy:** $100.0\%$ trên tập test độc lập, Confusion Matrix đường chéo chính | Bộ nhận dạng phân loại chính xác toàn bộ 10 file test; khoảng cách Top-1 vượt trội hoàn toàn so với Top-2 (cách biệt $> 25$ đơn vị). |
 
 ---
@@ -436,7 +436,7 @@ $$X = (x_1, \dots, x_N) \in \mathbb{R}^{N \times 13}, \quad Y = (y_1, \dots, y_M
     $$D[N, M] = \sum_{k=1}^{|P|} C[i_k, j_k]$$
   - Nếu không chuẩn hóa, một cặp phát âm có thời lượng dài (nhiều frame) sẽ có số bước đi $|P|$ lớn hơn rất nhiều so với một cặp phát âm ngắn. Do là tổng của nhiều số dương, tổng chi phí $D[N, M]$ của từ dài sẽ tự nhiên lớn hơn rất nhiều, ngay cả khi hai mẫu đó là cùng một từ!
   - Điều này dẫn đến sự bất công bằng và thiên lệch nghiêm trọng: Hệ thống sẽ luôn có xu hướng nhận nhầm thành các từ ngắn (vì từ ngắn có ít frame nên tổng chi phí nhỏ hơn).
-  - Phép chuẩn hóa bằng cách chia cho độ dài đường đi: $\text{DTW\_norm} = \frac{D[N, M]}{|P|}$ đưa tổng chi phí về **khoảng cách trung bình trên mỗi cặp frame**, giúp việc so sánh giữa các từ có độ dài thời gian khác nhau trở nên hoàn toàn khách quan và công bằng.
+  - Phép chuẩn hóa bằng cách chia cho độ dài đường đi: $\mathrm{DTW\_norm} = \frac{D[N, M]}{|P|}$ đưa tổng chi phí về **khoảng cách trung bình trên mỗi cặp frame**, giúp việc so sánh giữa các từ có độ dài thời gian khác nhau trở nên hoàn toàn khách quan và công bằng.
 
 ---
 
