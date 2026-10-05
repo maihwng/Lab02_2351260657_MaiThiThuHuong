@@ -251,7 +251,7 @@ $$X = (x_1, \dots, x_N) \in \mathbb{R}^{N \times 13}, \quad Y = (y_1, \dots, y_M
    với $|P|$ là tổng số cặp frame trên đường căn chỉnh tối ưu.
 
 - **Sanity Check (Kiểm tra tính đúng đắn bắt buộc):**
-  Khi so sánh $X$ với chính nó: $\text{DTW\_norm}(X, X) = 0.000000$ và đường đi trùng khít tuyệt đối với đường chéo chính. Thuật toán vượt qua kiểm thử hoàn hảo.
+  Khi so sánh $X$ với chính nó:$$\mathrm{DTW}_{\mathrm{norm}}(X,X) = 0.000000$$ và đường đi trùng khít tuyệt đối với đường chéo chính. Thuật toán vượt qua kiểm thử hoàn hảo.
 
 #### 2. So sánh đối chứng Cùng từ vs Khác từ:
 
