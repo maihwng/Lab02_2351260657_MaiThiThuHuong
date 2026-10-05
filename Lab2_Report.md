@@ -247,7 +247,7 @@ $$X = (x_1, \dots, x_N) \in \mathbb{R}^{N \times 13}, \quad Y = (y_1, \dots, y_M
 3. **Backtracking:**
    Truy vết ngược từ ô đích $(N, M)$ về $(1, 1)$ dựa trên con trỏ lưu trữ để tìm đường căn chỉnh tối ưu $P = [(i_1, j_1), \dots, (i_K, j_K)]$.
 4. **Chuẩn hóa chi phí theo độ dài đường đi:**
-   $$\text{DTW\_norm}(X, Y) = \frac{D[N, M]}{|P|}$$
+   $$\mathrm{DTW}_{norm}(X,Y)=\frac{D[N,M]}{|P|}$$
    với $|P|$ là tổng số cặp frame trên đường căn chỉnh tối ưu.
 
 - **Sanity Check (Kiểm tra tính đúng đắn bắt buộc):**
