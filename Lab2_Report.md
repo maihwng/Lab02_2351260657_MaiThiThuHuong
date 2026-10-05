@@ -260,11 +260,11 @@ $$X = (x_1, \dots, x_N) \in \mathbb{R}^{N \times 13}, \quad Y = (y_1, \dots, y_M
 
 - **Kết quả đo lường định lượng:**
   - **Cùng từ (`mot_01` vs `mot_02`):**
-    - Chi phí chuẩn hóa: $\text{DTW\_norm} = \mathbf{10.52}$
+    - Chi phí chuẩn hóa: $\mathrm{DTW\_norm} = \mathbf{10.52}$
     - Độ dài đường đi: $|P| = 51\text{ bước}$
     - Đặc điểm đường đi: Bám rất sát đường chéo chính. Các đoạn lệch ngang/dọc nhỏ phản ánh sự kéo giãn thời gian tự nhiên ở nguyên âm giữa hai lần phát âm độc lập.
   - **Khác từ (`mot_01` vs `ba_01`):**
-    - Chi phí chuẩn hóa: $\text{DTW\_norm} = \mathbf{55.82}$ (Tăng vọt gấp **$5.3$ lần** so với cùng từ!)
+    - Chi phí chuẩn hóa: $\mathrm{DTW\_norm} = \mathbf{55.82}$ (Tăng vọt gấp **$5.3$ lần** so với cùng từ!)
     - Độ dài đường đi: $|P| = 64\text{ bước}$
     - Đặc điểm đường đi: Bị bẻ cong ngoằn ngoèo, gãy khúc nghiêm trọng vì giải thuật phải gượng ép ghép nối các âm vị hoàn toàn không tương thích về mặt phổ học.
 
