@@ -89,7 +89,7 @@ Lab02_2351260657_MaiThiThuHuong/
 | **Số hệ số MFCC ($N_{mfcc}$)** | $13$ hệ số | Biểu diễn đường bao phổ làm trơn của ống thanh âm |
 | **Chuẩn hóa CMN** | Trừ mean utterance | Khử biến thiên do micro và đáp ứng kênh truyền |
 | **Khoảng cách cục bộ** | Euclidean ($L_2$) | Đo khoảng cách hình học giữa 2 vector MFCC |
-| **DTW Cost Normalization** | $D[N, M] / |P|$ | Chuẩn hóa tổng chi phí theo độ dài đường đi tối ưu |
+| **DTW Cost Normalization** | $D[N, M] / \lvert P \rvert$ | Chuẩn hóa tổng chi phí theo độ dài đường đi tối ưu |
 
 ---
 
@@ -148,11 +148,11 @@ Khi sinh viên ghi âm giọng nói của chính mình, hãy thực hiện theo 
 | **Energy + ZCR** | Đồ thị thời gian phân rõ 3 hàng cho 3 từ đại diện | **Silence:** Năng lượng $\approx 0$, ZCR dao động nhỏ do nhiễu nền.<br>**Voiced:** Năng lượng cực đại, ZCR rất thấp ($< 0.1$).<br>**Unvoiced:** Năng lượng thấp, ZCR rất cao ($> 0.3$). |
 | **Endpoint Detection** | Bảng thời lượng cắt bỏ $35\% - 48\%$ silence dư thừa | Nhờ có `margin_ms = 50ms`, các phụ âm xát đầu từ `/kh/` và âm tắc cuối từ `/t/` được bảo tồn nguyên vẹn, không hề bị cắt phạm vào âm thanh. |
 | **MFCC** | Heatmaps $(T, 13)$ của các từ khác nhau | Bao phổ các từ thể hiện các rãnh formant khác nhau rõ rệt theo thời gian. Số frame $T$ thay đổi theo độ dài phát âm nhưng số chiều $13$ là bất biến. |
-| **DTW cùng từ** | $\text{DTW\_norm} \approx 10 - 15$, Path dài $\approx 50 - 65$ | Đường căn chỉnh tối ưu bám sát đường chéo chính, thể hiện sự đồng dạng âm học cao giữa 2 lần phát âm cùng từ. |
-| **DTW khác từ** | $\text{DTW\_norm} \approx 45 - 75$, Path dài $\approx 60 - 80$ | Chi phí tăng vọt gấp **$4 - 6$ lần**. Đường đi gãy khúc nghiêm trọng do giải thuật phải gượng ép ghép nối các âm vị khác biệt. |
+| **DTW cùng từ** | $\mathrm{DTW\_norm} \approx 10 - 15$, Path dài $\approx 50 - 65$ | Đường căn chỉnh tối ưu bám sát đường chéo chính, thể hiện sự đồng dạng âm học cao giữa 2 lần phát âm cùng từ. |
+| **DTW khác từ** | $\mathrm{DTW\_norm} \approx 45 - 75$, Path dài $\approx 60 - 80$ | Chi phí tăng vọt gấp **$4 - 6$ lần**. Đường đi gãy khúc nghiêm trọng do giải thuật phải gượng ép ghép nối các âm vị khác biệt. |
 | **Recognizer** | **Accuracy:** $100\%$ trên tập test độc lập, Confusion Matrix đường chéo chính tuyệt đối | Bộ nhận dạng phân loại chính xác toàn bộ 10 file test; các từ có sự phân tách âm học tốt và khoảng cách cách biệt lớn. |
 | **Thí nghiệm E1** | Có Trim: $100\%$ Acc vs Không Trim | Không trim khiến DTW căn chỉnh cả khoảng lặng, làm sai lệch chi phí thực và giảm tỷ số phân tách giữa các từ. |
-| **Thí nghiệm E2** | 13 MFCC vs 26 MFCC+$\Delta$ | Bổ sung thông tin động $\Delta$ giúp tăng tỷ số phân tách (Margin) giữa cùng từ và khác từ, làm hệ thống bền vững hơn với biến thiên ngữ âm. |
+| **Thí nghiệm E2** | 13 MFCC vs 26 MFCC+Δ | Bổ sung thông tin động Δ giúp tăng tỷ số phân tách (Margin) giữa cùng từ và khác từ, làm hệ thống bền vững hơn với biến thiên ngữ âm. |
 | **Thí nghiệm E3** | 1 Template vs 3 Templates | 3 Templates cung cấp nhiều biến thể phát âm hơn, giúp hệ thống ổn định và giảm thiểu rủi ro khi một template mẫu bị lỗi phát âm. |
 
 ### Bảng Kết quả Nhận dạng Chi tiết trên Tập Test (`results.csv`):
@@ -235,7 +235,7 @@ Khi sinh viên ghi âm giọng nói của chính mình, hãy thực hiện theo 
     $$D[N, M] = \sum_{k=1}^{|P|} C[i_k, j_k]$$
   - Nếu không chuẩn hóa, một cặp phát âm có thời lượng dài (nhiều frame) sẽ có số bước đi $|P|$ lớn hơn rất nhiều so với một cặp phát âm ngắn. Do là tổng của nhiều số dương, tổng chi phí $D[N, M]$ của từ dài sẽ tự nhiên lớn hơn rất nhiều, ngay cả khi hai mẫu đó là cùng một từ!
   - Điều này dẫn đến sự bất công bằng và thiên lệch nghiêm trọng: Hệ thống sẽ luôn có xu hướng nhận nhầm thành các từ ngắn (vì từ ngắn có ít frame nên tổng chi phí nhỏ hơn).
-  - Phép chuẩn hóa bằng cách chia cho độ dài đường đi: $\text{DTW\_norm} = \frac{D[N, M]}{|P|}$ đưa tổng chi phí về **khoảng cách trung bình trên mỗi cặp frame**, giúp việc so sánh giữa các từ có độ dài thời gian khác nhau trở nên hoàn toàn khách quan và công bằng.
+  - Phép chuẩn hóa bằng cách chia cho độ dài đường đi: $\mathrm{DTW\_norm} = \frac{D[N, M]}{|P|}$ đưa tổng chi phí về **khoảng cách trung bình trên mỗi cặp frame**, giúp việc so sánh giữa các từ có độ dài thời gian khác nhau trở nên hoàn toàn khách quan và công bằng.
 
 ---
 
