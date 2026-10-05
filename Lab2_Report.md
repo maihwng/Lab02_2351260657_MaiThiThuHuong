@@ -134,7 +134,7 @@ Bài thực hành số 2 (Lab 2) hiện thực hóa các nội dung lý thuyết
 - **Năng lượng ngắn hạn (Short-time Energy):**
   $$E_r = \sum_{n=0}^{L-1} x_r^2[n]$$
 - **Căn bậc hai trung bình bình phương (RMS):**
-  $$\text{RMS}_r = \sqrt{\frac{1}{L} \sum_{n=0}^{L-1} x_r^2[n]}$$
+  $$RMSr = \sqrt{\frac{1}{L} \sum_{n=0}^{L-1} x_r^2[n]}$$
 - **Tốc độ đổi dấu qua điểm 0 (Zero-Crossing Rate - ZCR):**
   $$Z_r = \frac{1}{2L} \sum_{m=1}^{L-1} |\text{sgn}(x_r[m]) - \text{sgn}(x_r[m-1])|$$
 - **Hàm tự tương quan ngắn hạn (Short-time Autocorrelation):**
