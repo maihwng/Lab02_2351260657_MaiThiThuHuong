@@ -275,7 +275,7 @@ $$X = (x_1, \dots, x_N) \in \mathbb{R}^{N \times 13}, \quad Y = (y_1, \dots, y_M
 #### 1. Cơ chế hoạt động:
 - **Tập mẫu tham chiếu:** Mỗi từ trong 5 từ vựng lưu trữ 3 templates đầu tiên $\to$ tổng cộng $15$ templates.
 - **Luật quyết định:** Khoảng cách từ mẫu thử $X$ đến lớp từ $w$ là khoảng cách DTW nhỏ nhất tới các template của từ đó:
-  $$D_w(X) = \min_{r \in \{1, 2, 3\}} \text{DTW\_norm}(X, T_{w, r})$$
+  $$D_w(X) = \min_{r \in \{1, 2, 3\}} \mathrm{DTW\_norm}(X, T_{w, r})$$
   Từ được dự đoán là từ có khoảng cách nhỏ nhất:
   $$\hat{w} = \arg\min_{w} D_w(X)$$
 - **Cơ chế Rejection (Bác bỏ mẫu lạ / Nhiễu):**
