@@ -25,7 +25,7 @@
 
 1. [TỔNG QUAN VÀ MỤC TIÊU BÀI LAB](#1-tổng-quan-và-mục-tiêu-bài-lab)
 2. [CẤU HÌNH THAM SỐ BASELINE VÀ KIẾN TRÚC PIPELINE](#2-cấu-hình-tham-số-baseline-và-kiến-trúc-pipeline)
-3. [NỘI DUNG THỰC HÀNH CHI TIẾT (A $\to$ G)](#3-nội-dung-thực-hành-chi-tiết)
+3. [NỘI DUNG THỰC HÀNH CHI TIẾT (A → G)](#3-nội-dung-thực-hành-chi-tiết)
    - [Phần A: Thu thập dữ liệu và kiểm tra chất lượng](#phần-a-thu-thập-dữ-liệu-và-kiểm-tra-chất-lượng)
    - [Phần B: Đặc trưng miền thời gian (Energy, RMS, ZCR, Autocorrelation & Pitch)](#phần-b-đặc-trưng-miền-thời-gian)
    - [Phần C: Phát hiện điểm đầu - điểm cuối (Endpoint Detection / VAD)](#phần-c-phát-hiện-điểm-đầu---điểm-cuối)
